@@ -78,9 +78,7 @@ class Python3Tester:
                 "exception": str(e)
             }
 
-        print("##START_RESULT##")
-        print(json.dumps(result))
-        print("##END_RESULT##")
+        return result
 
 
 def main():
@@ -88,7 +86,11 @@ def main():
     test_strings = json.loads(sys.argv[2])
 
     tester = Python3Tester()
-    tester.test_regex(config, test_strings)
+    result = tester.test_regex(config, test_strings)
+
+    print("##START_RESULT##")
+    print(json.dumps(result))
+    print("##END_RESULT##")
 
 
 if __name__ == "__main__":
