@@ -46,6 +46,11 @@ class Python3Tester:
                         result["result"]["resultList"].append(False)
             elif test_type == "group":
                 result["type"] = "GROUP"
+                result["columns"] = []
+
+                for i in range(1, len(pattern.groups())):
+                    result["columns"].append("Group #" + i)
+
                 for test_string in test_strings:
                     iterator = pattern.finditer(test_string)
 
