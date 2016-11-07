@@ -46,10 +46,10 @@ class Python3Tester:
                         result["result"]["resultList"].append(False)
             elif test_type == "group":
                 result["type"] = "GROUP"
-                result["columns"] = []
+                result["result"]["columns"] = []
 
                 for i in range(1, pattern.groups + 1):
-                    result["columns"].append("Group #" + str(i))
+                    result["result"]["columns"].append("Group #" + str(i))
 
                 for test_string in test_strings:
                     iterator = pattern.finditer(test_string)
@@ -71,12 +71,13 @@ class Python3Tester:
                     result["result"]["resultList"].append(replaced)
             elif test_type == "findall":
                 result["type"] = "GROUP"
+                result["result"]["columns"] = ["Found"];
                 for test_string in test_strings:
                     groupsList = {"list": [[]]}
                     result["result"]["resultList"].append(groupsList)
                     found = pattern.findall(test_string)
                     for word in found:
-                        groupsList["list"][0].append(word);
+                        groupsList["list"].append([word]);
 
         except Exception as e:
             result = {
