@@ -48,7 +48,7 @@ class Python3Tester:
                 result["type"] = "GROUP"
                 result["result"]["columns"] = []
 
-                for i in range(1, pattern.groups + 1):
+                for i in range(0, pattern.groups + 1):
                     result["result"]["columns"].append("Group #" + str(i))
 
                 for test_string in test_strings:
@@ -57,7 +57,7 @@ class Python3Tester:
                     groupsList = {"list": []}
                     result["result"]["resultList"].append(groupsList)
                     for match in iterator:
-                        groups = []
+                        groups = [match.group(0)]
                         for group in match.groups():
                             groups.append(group)
                         groupsList["list"].append(groups);
@@ -73,7 +73,7 @@ class Python3Tester:
                 result["type"] = "GROUP"
                 result["result"]["columns"] = ["Found"];
                 for test_string in test_strings:
-                    groupsList = {"list": [[]]}
+                    groupsList = {"list": []}
                     result["result"]["resultList"].append(groupsList)
                     found = pattern.findall(test_string)
                     for word in found:

@@ -1,5 +1,4 @@
 import unittest
-import json
 
 from Python3Tester import Python3Tester
 
@@ -23,12 +22,12 @@ class Python3TesterTest(unittest.TestCase):
             "regex": "([A-Za-z]*)"
         }
         result = self.tester.test_regex(config, self.test_strings)
-        self.assertEqual(result["result"]["resultList"][0]["list"][0], ["Hello"])
-        self.assertEqual(result["result"]["resultList"][0]["list"][2], ["Python"])
-        self.assertEqual(result["result"]["resultList"][0]["list"][4], ["Test"])
-        self.assertEqual(result["result"]["resultList"][1]["list"][0], ["Hello"])
-        self.assertEqual(result["result"]["resultList"][1]["list"][3], ["Python"])
-        self.assertEqual(result["result"]["resultList"][1]["list"][6], ["Test"])
+        self.assertEqual(result["result"]["resultList"][0]["list"][0], ["Hello", "Hello"])
+        self.assertEqual(result["result"]["resultList"][0]["list"][2], ["Python", "Python"])
+        self.assertEqual(result["result"]["resultList"][0]["list"][4], ["Test", "Test"])
+        self.assertEqual(result["result"]["resultList"][1]["list"][0], ["Hello", "Hello"])
+        self.assertEqual(result["result"]["resultList"][1]["list"][3], ["Python", "Python"])
+        self.assertEqual(result["result"]["resultList"][1]["list"][6], ["Test", "Test"])
 
     def test_replace(self):
         config = {
@@ -46,8 +45,8 @@ class Python3TesterTest(unittest.TestCase):
             "regex": "([A-Z])"
         }
         result = self.tester.test_regex(config, self.test_strings)
-        self.assertEqual(result["result"]["resultList"][0]["list"][0], ["H", "P", "T"])
-        self.assertEqual(result["result"]["resultList"][1]["list"][0], ["H", "P", "T"])
+        self.assertEqual(result["result"]["resultList"][0]["list"], [["H"], ["P"], ["T"]])
+        self.assertEqual(result["result"]["resultList"][1]["list"], [["H"], ["P"], ["T"]])
 
 if __name__ == '__main__':
     unittest.main()
