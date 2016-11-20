@@ -9,7 +9,7 @@ RUN apk add --no-cache python3 && \
     pip3 install --upgrade pip setuptools && \
     rm -r /root/.cache && \
     cd /root && \
-    echo "arg=();for var in \"\$@\";do arg+=(\$(echo -n \"\$var\" | base64 -d)); done; python3 /root/Python3Tester.py \"\${arg[@]}\"" > run.sh && \
+    echo "arg=();for var in \"\$@\";do arg+=(\"\$(echo -n \"\$var\" | base64 -d)\"); done; python3 /root/Python3Tester.py \"\${arg[@]}\"" > run.sh && \
     chmod 755 run.sh 
     
 ENTRYPOINT ["/bin/bash", "/root/run.sh"]
